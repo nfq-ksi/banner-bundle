@@ -1,0 +1,8 @@
+_banners_admin:
+    resource: @NfqBannerBundle/Resources/config/routing_admin.yml
+    prefix: /admin/banners
+    options: { i18n: false }
+
+_banners_front:
+    resource: @NfqBannerBundle/Resources/config/routing_front.yml
+    prefix: /

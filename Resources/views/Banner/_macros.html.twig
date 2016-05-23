@@ -1,0 +1,40 @@
+{% import _self as macro %}
+
+{% macro banner_image(banner) %}
+    {% import _self as macro %}
+
+    {% set hasText = banner.text|striptags|trim is not empty %}
+    {% set image = banner_image_src(banner) %}
+    {% if banner.resizeParams is iterable %}
+        {% set image = web_image(banner_image_src(banner)).zoomCrop(banner.resizeParams.width, banner.resizeParams.height) %}
+    {% endif %}
+
+    {% if hasText %}
+        {{ macro.text_banner_content(banner, image) }}
+    {% else %}
+        {{ macro.default_banner_content(banner, image) }}
+    {% endif %}
+
+{% endmacro %}
+
+{% macro default_banner_content(banner, image) %}
+    {% if banner.link is not empty %}
+        <a href="{{ banner.link }}">
+            <img src="{{ image }}" alt="{{ banner.title }}" />
+        </a>
+    {% else %}
+        <img src="{{ image }}" alt="{{ banner.title }}" />
+    {% endif %}
+{% endmacro %}
+
+{% macro text_banner_content(banner, image) %}
+    {% if banner.link is not empty %}
+        <a href="{{ banner.link }}">
+    {% endif %}
+            <span>{{ banner.text|raw }}</span>
+            <img src="{{ image }}" alt="{{ banner.title }}" />
+    {% if banner.link is not empty %}
+        </a>
+    {% endif %}
+{% endmacro %}
+

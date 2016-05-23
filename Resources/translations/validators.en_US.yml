@@ -1,0 +1,3 @@
+banner.errors.file_too_large: File is too large. Max allowed size is {{ limit }} {{ suffix }}.
+banner.errors.wrong_mime: Wrong file format. Allow file formats are {{ types }}.
+banner.errors.invalid_date: Invalid date.

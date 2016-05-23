@@ -1,0 +1,108 @@
+{% set main_menu = 'banner' %}
+{% extends 'NfqAdminBundle:Base:index.html.twig' %}
+
+{% block pageTitle %}
+    {{ 'banner.banner_head_title'|trans }}
+{% endblock %}
+
+{% block buttons %}
+    <a data-target="#myModal" data-toggle="modal" class='btn btn-outline btn-primary right' href="{{ path('nfq_banner_create') }}">
+        <i class="fa fa-plus"></i>  <span> {{ 'banner.banner_new'|trans }} </span>
+    </a>
+{% endblock %}
+
+{% block headPanel %}
+    {{ 'banner.head_total'|trans }} ({{ pagination.getTotalItemCount }})
+{% endblock %}
+
+{% block contentPanel %}
+    {% include 'NfqBannerBundle:Admin/Banner:searchForm.html.twig' %}
+
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered table-hover dataTable reopenable">
+            <thead>
+            <tr>
+                <th>{{ nfqSorting.sortUrl('nfq_banner_list', 'search.id', '#') }}</th>
+                <th>{{ nfqSorting.sortUrl('nfq_banner_list', 'search.isActive', 'banner.labels.active') }}</th>
+                <th>{{ nfqSorting.sortUrl('nfq_banner_list', 'search.static', 'banner.labels.static') }}</th>
+                <th>{{ nfqSorting.sortUrl('nfq_banner_list', 'search.title', 'banner.labels.title') }}</th>
+                <th></th>
+                <th>{{ nfqSorting.sortUrl('nfq_banner_list', 'search.place', 'banner.labels.place') }}</th>
+                <th>{{ nfqSorting.sortUrl('nfq_banner_list', 'search.startDate', 'banner.labels.startDate.label') }}</th>
+                <th>{{ nfqSorting.sortUrl('nfq_banner_list', 'search.endDate', 'banner.labels.endDate.label') }}</th>
+                <th>{{ 'generic.actions'|trans }}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for key, banner in pagination.pagination %}
+                <tr data-id="{{ banner.id }}" {% if loop.index is odd %}class="color"{% else %}class="no-color"{% endif %} >
+                    <td>{{ banner.id }}</td>
+                    <td data-target="#myModal" data-toggle="modal" data-href="{{ path("nfq_banner_update", {'id': banner.id }) }}">
+                        {% if banner.active > 0 %}
+                            <span class="green_icon"> <i class="fa fa-check-square-o"></i> </span>
+                        {% else %}
+                            <span class="green_red"> <i class="fa fa-square-o"></i> </span>
+                        {% endif %}
+                    </td>
+                    <td data-target="#myModal" data-toggle="modal" data-href="{{ path("nfq_banner_update", {'id': banner.id }) }}">
+                        {% if banner.static > 0 %}
+                            <span class="green_icon"> <i class="fa fa-check-square-o"></i> </span>
+                        {% else %}
+                            <span class="green_red"> <i class="fa fa-square-o"></i> </span>
+                        {% endif %}
+                    </td>
+                    <td data-target="#myModal" data-toggle="modal" data-href="{{ path("nfq_banner_update", {'id': banner.id }) }}">
+                        {{ banner.title }}
+                    </td>
+                    <td style="width: 100px;">
+                        <img src="{{ banner_image_src(banner) }}" alt="Banner image" style="width:100%;" />
+                    </td>
+                    <td data-target="#myModal" data-toggle="modal" data-href="{{ path("nfq_banner_update", {'id': banner.id }) }}">
+                        <span class="badge">#{{ banner.sortPosition }}</span>
+                        {% if bannerConfig.banner_places[banner.place] is defined %}
+                            {{ bannerConfig.banner_places[banner.place].title }}
+                        {% else %}
+                            {{ banner.place }}
+                        {% endif %}
+                    </td>
+                    <td data-target="#myModal" data-toggle="modal" data-href="{{ path("nfq_banner_update", {'id': banner.id }) }}">
+                        {% if banner.startDate is not null %}
+                            {{ banner.startDate.format('Y-m-d') }}
+                        {% endif %}
+                    </td>
+                    <td data-target="#myModal" data-toggle="modal" data-href="{{ path("nfq_banner_update", {'id': banner.id }) }}">
+                        {% if banner.endDate is not null %}
+                            {{ banner.endDate.format('Y-m-d') }}
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a data-target="#myModal" data-toggle="modal" href="{{ path("nfq_banner_delete", {'id': banner.id }) }}">
+                            <span class="red_icon"> <i class="fa fa-trash-o"></i>  </span>
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+
+{% block extra_js %}
+    <script>
+        $(document).ready(function () {
+
+            $('.is-static').click(function(e) {
+               console.log('changed');
+            });
+
+            $('.dt-start-date-from').datepicker().on('changeDate', function (e) {
+                $('.dt-start-date-to').datepicker('setStartDate', e.date);
+            });
+
+            $('.dt-end-date-from').datepicker().on('changeDate', function (e) {
+                $('.dt-end-date-to').datepicker('setStartDate', e.date);
+            });
+        });
+    </script>
+{% endblock %}

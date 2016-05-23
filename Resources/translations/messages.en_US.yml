@@ -1,0 +1,36 @@
+banner.banner_head_title: Banners
+banner.banner_new: New Banner
+banner.head_total: Total banners found
+banner.search_placeholder: Search
+banner.remove: Delete
+banner.remove_text: Do you want to delete this Banner?
+banner.banner_edit: EDIT
+
+banner.labels.active: Active
+banner.labels.static: Static
+banner.labels.title: Title
+banner.labels.place: Place
+banner.labels.link: Link
+banner.labels.startDate: Start Date (inclusive)
+banner.labels.endDate: End Date (inclusive)
+banner.labels.startDate.label: Start Date (inclusive)
+banner.labels.endDate.label: End Date (inclusive)
+banner.labels.file: Image
+banner.labels.image: Image
+banner.image.preview_notice: Banner preview
+
+banner.mgmt.active_placeholder: Filter by active
+banner.mgmt.filter.active: Show active
+banner.mgmt.filter.inactive: Show Inactive
+
+banner.mgmt.place_placeholder: Filter by place
+
+banner.mgmt.title: Title
+banner.mgmt.link: Link
+banner.mgmt.place: Place
+banner.mgmt.date_from: Start Date
+banner.mgmt.date_to: End Date
+banner.mgmt.active: Active
+banner.mgmt.static_placeholder: Filter by static
+banner.mgmt.filter.static: Show static only
+banner.mgmt.filter.not_static: Show non static only

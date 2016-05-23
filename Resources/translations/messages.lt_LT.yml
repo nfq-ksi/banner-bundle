@@ -1,0 +1,31 @@
+banner.banner_head_title: Baneriai
+banner.banner_new: Naujas baneris
+banner.head_total: Viso rasta banerių
+banner.search_placeholder: Paieška
+banner.remove: Ištrinti
+banner.remove_text: Ar tikrai norite ištrinti šį banerį?
+banner.banner_edit: REDAGUOTI
+
+banner.labels.active: Aktyvus
+banner.labels.title: Pavadinimas
+banner.labels.place: Vieta
+banner.labels.link: Nuoroda
+banner.labels.startDate: Rodyti nuo (imtinai)
+banner.labels.endDate: Rodyti iki (imtinai)
+banner.labels.startDate.label: Rodyti nuo (imtinai)
+banner.labels.endDate.label: Rodyti iki (imtinai)
+banner.labels.file: Nuotrauka
+banner.labels.image: Nuotrauka
+
+banner.mgmt.active_placeholder: Filtruoti pagal aktyvumą
+banner.mgmt.filter_active: Rodyti aktyvius
+banner.mgmt.filter_inactive: Rodyti neaktyvius
+
+banner.mgmt.place_placeholder: Filtruoti pagal poziciją
+
+banner.mgmt.title: Pavadinimas
+banner.mgmt.link: Nuoroda
+banner.mgmt.place: Vieta
+banner.mgmt.date_from: Rodyti nuo
+banner.mgmt.date_to: Rodyti iki
+banner.mgmt.active: Aktyvus

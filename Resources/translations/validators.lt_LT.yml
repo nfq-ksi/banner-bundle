@@ -1,0 +1,2 @@
+banner.errors.file_too_large: Per didelis failas. Maksimalus leidžiamas dydis yra {{ limit }} {{ suffix }}.
+banner.errors.wrong_mime: Netinkamas failo formatas. Leidžiami formatai yra {{ types }}.

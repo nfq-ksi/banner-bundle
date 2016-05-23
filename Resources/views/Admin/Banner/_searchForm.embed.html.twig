@@ -1,0 +1,58 @@
+{% set searchUri = url("nfq_banner_list", app.request.query.all) %}
+{% set resetUri = url("nfq_banner_list") %}
+{% extends 'NfqAdminBundle:Base/_blocks:_searchPanel_col2.html.twig' %}
+
+{% block search_col1 %}
+    <div class="form-group">
+        <input id="banner-search" type="text" placeholder="{{ 'banner.search_placeholder'|trans }}"
+               name="search" value="{{ app.request.get('search')|default }}" class="form-control" autocomplete="off"/>
+    </div>
+    {# Place #}
+    <div class="form-group">
+        <select name="place" class="form-control">
+            <option value="">{{ 'banner.mgmt.place_placeholder'|trans }}</option>
+            {% for placeCode, place in bannerConfig.banner_places %}
+                <option value="{{ placeCode }}" {% if app.request.get('place') == placeCode %} selected="selected" {% endif %}>{{ place.title }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="form-group">
+        <select name="active" class="form-control">
+            <option value="-1">{{ 'banner.mgmt.active_placeholder'|trans }}</option>
+            <option value="1" {% if app.request.get('active') == 1 %} selected="selected" {% endif %}>{{ 'banner.mgmt.filter.active'|trans }}</option>
+            <option value="0" {% if app.request.get('active') is not null and app.request.get('active') == 0 %} selected="selected" {% endif %}>{{ 'banner.mgmt.filter.inactive'|trans }}</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <select name="static" class="form-control">
+            <option value="-1">{{ 'banner.mgmt.static_placeholder'|trans }}</option>
+            <option value="1" {% if app.request.get('static') == 1 %} selected="selected" {% endif %}>{{ 'banner.mgmt.filter.static'|trans }}</option>
+            <option value="0" {% if app.request.get('static') is not null and app.request.get('static') == 0 %} selected="selected" {% endif %}>{{ 'banner.mgmt.filter.not_static'|trans }}</option>
+        </select>
+    </div>
+{% endblock %}
+
+{% block search_col2 %}
+    <div class="col-lg-3">{{ 'banner.mgmt.date_from'|trans }}</div>
+    <div class="form-group col-lg-9">
+        <div class="input-group">
+            <input type="text" placeholder="{{ 'generic.from'|trans }}" name="start_date_from"
+                   value="{{ app.request.get('start_date_from') }}" class="form-control datepicker dt-start-date-from"/>
+            <span class="input-group-addon">&ndash;</span>
+            <input type="text" placeholder="{{ 'generic.to'|trans }}" name="start_date_to"
+                   value="{{ app.request.get('start_date_to') }}" class="form-control datepicker dt-start-date-to"/>
+        </div>
+    </div>
+
+    <div class="col-lg-3">{{ 'banner.mgmt.date_to'|trans }}</div>
+    <div class="form-group col-lg-9">
+        <div class="input-group">
+            <input type="text" placeholder="{{ 'generic.from'|trans }}" name="end_date_from"
+                   value="{{ app.request.get('end_date_from') }}" class="form-control datepicker dt-end-date-from"/>
+            <span class="input-group-addon">&ndash;</span>
+            <input type="text" placeholder="{{ 'generic.to'|trans }}" name="end_date_to"
+                   value="{{ app.request.get('end_date_to') }}" class="form-control datepicker dt-end-date-to"/>
+        </div>
+    </div>
+{% endblock %}

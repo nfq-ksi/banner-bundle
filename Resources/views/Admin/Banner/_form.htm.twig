@@ -1,0 +1,66 @@
+{% for locale, formGroup in forms %}
+    {% if  formGroup.edit is defined %}
+        {% set form = formGroup.edit %}
+    {% else %}
+        {% set form = formGroup %}
+    {% endif %}
+
+    {% if  formGroup.delete is defined %}
+        {% set delete_form = formGroup.delete %}
+    {% endif %}
+
+    <div class="tab-pane {% if isActiveLocale(_context, locale) %}active{% endif %}" id="{{ locale }}-tab">
+        {% embed 'NfqAdminBundle:_form:_form_theme.html.twig' %}{% endembed %}
+        {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+
+        {{ form_errors(form) }}
+        <div class="row">
+            <div class="col-lg-8">
+                {{ form_row(form.active) }}
+                {{ form_row(form.static) }}
+                {{ form_row(form.place) }}
+                {{ form_row(form.title) }}
+                {{ form_row(form.link) }}
+                {{ form_row(form.startDate) }}
+                {{ form_row(form.endDate) }}
+                {{ form_row(form.file) }}
+                {{ form_row(form.sortPosition) }}
+            </div>
+            <div class="col-lg-4">
+                <img {% if form.vars.value.image is not null %} src="{{ banner_image_src(form.vars.value) }}" style="width: 100%;" {% else %} data-src="holder.js/100%x200/text:{{ 'banner.image.preview_notice'|trans }}" {% endif %} alt="" />
+            </div>
+        </div>
+
+        <br />
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="form-group">
+                    {{ form_widget(form.text) }}
+                </div>
+            </div>
+        </div>
+
+        {% include 'NfqAdminBundle:_form:_form_submit.html.twig' with {'form': form} %}
+
+        {{ form_end(form) }}
+
+        {% include 'NfqAdminBundle:_form:_form_delete.html.twig' %}
+    </div>
+{% endfor %}
+
+{% block extra_js %}
+    <script>
+        $(document).ready(function () {
+            $('.is-static').click(function() {
+                var form = $(this).closest('form');
+                if ($(this).prop('checked')) {
+                    form.find('.datepicker').prop('disabled', true);
+                } else {
+                    form.find('.datepicker').prop('disabled', false);
+                }
+            });
+        });
+    </script>
+{% endblock %}
+

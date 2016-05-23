@@ -1,0 +1,11 @@
+{% import 'NfqBannerBundle:Banner:_macros.html.twig' as macro %}
+
+{% if banners %}
+    <ul>
+        {% for banner in banners %}
+            <li>
+                {{ macro.banner_image(banner) }}
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}

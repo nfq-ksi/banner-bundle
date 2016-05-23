@@ -1,0 +1,4 @@
+banner_view:
+    path: /banner/viewList/{place}
+    methods: [ GET ]
+    defaults: { _controller: NfqBannerBundle:Banner:viewList }
