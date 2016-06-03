@@ -140,6 +140,9 @@ class BannerType extends TranslatableType
 
             if (isset($bannerPlaces['width'] ) && isset($bannerPlaces['height'])) {
                 $placeTitle .= ' (' . $bannerPlaces['width'] . 'x' .  $bannerPlaces['height'] .')';
+                if (isset($bannerPlaces['measure_unit']) && !empty($bannerPlaces['measure_unit'])) {
+                    $placeTitle = $placeTitle . ' ' .$bannerPlaces['measure_unit'];
+                }
             }
 
             $places[$placeKey] = $placeTitle;

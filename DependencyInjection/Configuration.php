@@ -44,6 +44,7 @@ class Configuration implements ConfigurationInterface
                             ->scalarNode('template')->end()
                             ->integerNode('width')->end()
                             ->integerNode('height')->end()
+                            ->scalarNode('measure_unit')->end()
                         ->end()
                     ->end()
                 ->end() // banner_places
