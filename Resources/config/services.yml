@@ -17,7 +17,7 @@ services:
     nfq_banner.banner_manager:
         class: Nfq\BannerBundle\Service\BannerManager
         arguments:
-            ["@nfq_banner.repository.banner", @nfq_banner.admin.service.banner_upload_manager, %nfq_banner%]
+            ["@nfq_banner.repository.banner", "@nfq_banner.admin.service.banner_upload_manager", %nfq_banner%]
 
     nfq_banner.admin.service.banner_upload_manager:
         class: Nfq\BannerBundle\Service\Admin\BannerUploadManager
@@ -67,6 +67,6 @@ services:
     #Validators
     validator.exact_image_dimensions:
         class: Nfq\BannerBundle\Validator\Constraint\BannerDimensionsValidator
-        arguments: [ @nfq_banner.banner_manager ]
+        arguments: [ "@nfq_banner.banner_manager" ]
         tags:
             - { name: validator.constraint_validator, alias: nfq_banner_dimmensions_validator }
